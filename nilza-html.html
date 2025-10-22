@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SCORPIONS — Copa Gal 2025</title>
+<style>
+:root{
+  --bg:#0b0b0e;
+  --panel:#111115;
+  --line:#1b1b20;
+  --text:#f6f6f6;
+  --muted:#b9b9c2;
+  --gold:#d4af37;
+  --gold-2:#a6882c;
+  --glow: 0 0 18px rgba(212,175,55,.35), 0 0 40px rgba(212,175,55,.15);
+}
+*{box-sizing:border-box}html,body{margin:0}
+body{
+  font-family: Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text); background:
+    radial-gradient(1200px 600px at 10% -10%, #151519 0, transparent 60%),
+    radial-gradient(900px 420px at 110% 20%, #16161b 0, transparent 65%),
+    var(--bg);
+}
+
+/* topo */
+.header{
+  position:sticky; top:0; z-index:10;
+  background:rgba(10,10,12,.7); backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.wrap{max-width:1100px; margin:0 auto; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text)}
+.brand img{width:36px; height:36px; object-fit:cover; border-radius:8px; box-shadow: var(--glow)}
+.brand b{letter-spacing:.6px}
+.nav a{color:var(--muted); text-decoration:none; margin-left:14px; font-weight:700}
+.nav a:hover{color:var(--gold)}
+
+/* hero */
+.hero{
+  display:grid; place-items:center; text-align:center; padding:56px 18px 32px;
+  position:relative; overflow:hidden;
+}
+.hero::after{
+  content:""; position:absolute; inset:auto -20% -30% -20%; height:60%;
+  background: radial-gradient(60% 60% at 50% 0%, rgba(212,175,55,.20), transparent 60%);
+  filter: blur(40px); pointer-events:none;
+}
+.logo{
+  width:min(48vw, 220px); aspect-ratio:1/1; border-radius:20px; overflow:hidden;
+  padding:10px; background:
+    linear-gradient(#0f0f12,#0f0f12) padding-box,
+    linear-gradient(135deg, #7d6924, #d4af37, #6d5a20) border-box;
+  border:2px solid transparent; box-shadow: var(--glow); margin-bottom:12px;
+  position:relative;
+}
+.logo::before{
+  /* anel de brilho pulsante */
+  content:""; position:absolute; inset:4px; border-radius:16px;
+  box-shadow: 0 0 25px rgba(212,175,55,.45), 0 0 55px rgba(212,175,55,.25);
+  animation:pulse 2.8s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes pulse{
+  0%,100%{opacity:.35; filter:blur(3px)}
+  50%{opacity:.9; filter:blur(6px)}
+}
+.logo img{width:100%; height:100%; object-fit:cover; border-radius:16px}
+h1{margin:0; font-size: clamp(1.4rem, 3.2vw + .6rem, 2.2rem); letter-spacing:.04em}
+.tag{
+  display:inline-block; margin-top:8px; padding:6px 12px; border-radius:999px;
+  background:linear-gradient(135deg,#151515,#0f0f12) padding-box,
+             linear-gradient(135deg,#6b5820,#d4af37,#6b5820) border-box;
+  border:1px solid transparent; color:var(--gold)
+}
+.lead{color:var(--muted); max-width:820px}
+
+/* seções */
+.section{padding:24px 18px}
+.container{max-width:1100px; margin:0 auto; display:grid; gap:16px}
+.card{
+  background:linear-gradient(#111115,#0f0f12) padding-box,
+             linear-gradient(145deg,#222228,#0c0c0f) border-box;
+  border:1px solid transparent; border-radius:18px; padding:16px;
+}
+h2{margin:0 0 8px 0; font-size: clamp(1.1rem, 2vw + .6rem, 1.6rem); color:var(--gold)}
+
+/* elenco */
+.grid{
+  display:grid; gap:12px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+.player{
+  border:1px solid var(--line); border-radius:14px; padding:12px;
+  background:#0f0f13; display:grid; gap:6px; text-align:center;
+  transition:.25s transform, .25s box-shadow, .25s border-color;
+}
+.player:hover{ transform: translateY(-2px); border-color:#3b3b44; box-shadow: var(--glow) }
+.pos{font-size:12px; color:#d8c589}
+.num{font-weight:900; color:var(--gold)}
+.badge{font-size:11px; padding:4px 8px; border-radius:999px; border:1px solid #3a3215; color:#ffe8a6; background:linear-gradient(#1a170c,#131109)}
+
+/* partidas */
+.table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px}
+.table th, .table td{padding:10px 12px; border-bottom:1px solid #202028; text-align:left; font-size:14px}
+.table th{color:#e8d79a}
+.win{color:#b7ffbf} .draw{color:#ffe9a6} .loss{color:#ffb3b3}
+
+/* contato */
+.row{display:grid; gap:12px}
+@media(min-width:720px){ .row{ grid-template-columns: 1fr 1fr } }
+.field{display:grid; gap:6px}
+label{color:#e4d9a3; font-size:13px}
+input, textarea{
+  background:#0e0e12; border:1px solid #21212a; color:#fff; border-radius:12px; padding:12px; outline:none;
+}
+textarea{min-height:120px; resize:vertical}
+.btn{
+  appearance:none; border:none; cursor:pointer; font-weight:900; letter-spacing:.3px;
+  padding:12px 16px; border-radius:12px; color:#0b0b0e;
+  background: linear-gradient(135deg, #d4af37, #b7932f);
+  box-shadow: var(--glow);
+}
+.btn:hover{ filter:brightness(1.05) }
+
+/* rodapé */
+.footer{
+  margin-top:16px; padding:16px; text-align:center; color:var(--muted);
+  border-top:1px solid var(--line); background:#0a0a0d;
+}
+
+/* animações suaves */
+.reveal{opacity:0; transform: translateY(10px); transition:.6s}
+.reveal.on{opacity:1; transform:none}
+</style>
+</head>
+<body>
+
+<!-- topo -->
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="#inicio">
+      <!-- logo pequena (embutida) -->
+      <img src="dataimagewebp;base64,{{LOGO_BASE64}}.png" alt="Escudo Scorpions">
+      <div><b>SCORPIONS</b><div style="font-size:12px;color:#cbbb7a">Copa Gal 2025</div></div>
+    </a>
+    <nav class="nav">
+      <a href="#elenco">Elenco</a>
+      <a href="#partidas">Partidas</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- hero -->
+<section id="inicio" class="hero">
+  <div class="logo">
+    <!-- logo grande (embutida) -->
+    <img src="dataimagewebp;base64,{{LOGO_BASE64}}.png" alt="Logo Scorpions" loading="eager">
+  </div>
+  <h1>Força • Garra • Respeito</h1>
+  <span class="tag">SCORPIONS — Copa Gal 2025</span>
+  <p class="lead">Time formado por atletas dedicados e apaixonados pelo futebol. Juntos, buscamos desempenho, disciplina e títulos — dentro e fora de campo.</p>
+</section>
+
+<!-- elenco -->
+<section id="elenco" class="section">
+  <div class="container">
+    <div class="card reveal">
+      <h2>Elenco</h2>
+      <div class="grid" id="grid-elenco"><!-- preenchido via JS --></div>
+    </div>
+  </div>
+</section>
+
+<!-- partidas -->
+<section id="partidas" class="section">
+  <div class="container">
+    <div class="card reveal">
+      <h2>Próximas Partidas</h2>
+      <table class="table" id="tb-jogos">
+        <thead>
+          <tr><th>Data</th><th>Adversário</th><th>Local</th><th>Status</th></tr>
+        </thead>
+        <tbody><!-- via JS --></tbody>
+      </table>
+      <div class="card" style="margin-top:12px">
+        <strong style="color:#e8d79a">Legenda:</strong>
+        <span class="win">Vitória</span> • <span class="draw">Empate</span> • <span class="loss">Derrota</span> • <span>— A disputar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- contato -->
+<section id="contato" class="section">
+  <div class="container">
+    <div class="card reveal">
+      <h2>Contato</h2>
+      <p class="lead">Quer marcar amistoso, patrocinar ou falar com a diretoria? Envie uma mensagem.</p>
+      <div class="row">
+        <div class="field">
+          <label>Seu nome</label>
+          <input id="nome" placeholder="Seu nome">
+        </div>
+        <div class="field">
+          <label>WhatsApp (DDD + número)</label>
+          <input id="whats" placeholder="6599xxxxxxx">
+        </div>
+      </div>
+      <div class="field">
+        <label>Mensagem</label>
+        <textarea id="msg" placeholder="Escreva aqui..."></textarea>
+      </div>
+      <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="enviarWhats()">💬 Enviar no WhatsApp</button>
+        <a class="btn" style="text-decoration:none;background:linear-gradient(135deg,#b7932f,#d4af37)" href="#inicio">⬆️ Voltar ao topo</a>
+      </div>
+      <p class="lead" style="font-size:13px;color:#b9b9c2;margin-top:8px">*O botão abre o WhatsApp com a mensagem pronta para você confirmar o envio.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © <span id="y"></span> SCORPIONS — Copa Gal 2025. Todos os direitos reservados.
+</footer>
+
+<script>
+/* ====== DADOS EDITÁVEIS ====== */
+// Elenco (adicione/edite à vontade)
+const ELENCO = [
+  {num:1,  nome:"Felipe Nunes",   pos:"GOL"},
+  {num:2,  nome:"Davizinho",      pos:"LD"},
+  {num:3,  nome:"Borgan",         pos:"ZAG"},
+  {num:4,  nome:"Harielson",      pos:"ZAG"},
+  {num:5,  nome:"Edmundo",        pos:"VOL"},
+  {num:6,  nome:"João Paulo",     pos:"LE"},
+  {num:7,  nome:"Cabeça",         pos:"MEI"},
+  {num:8,  nome:"Moacir",         pos:"MEI"},
+  {num:9,  nome:"Bruno",          pos:"ATA"},
+  {num:10, nome:"Adailton",       pos:"MEI"},
+  {num:11, nome:"Matheus",        pos:"ATA"},
+  // reservas
+  {num:12, nome:"Thiago",         pos:"GOL"},
+  {num:13, nome:"Zagueiro 3",     pos:"ZAG"},
+  {num:14, nome:"Meia 3",         pos:"MEI"},
+  {num:15, nome:"Atacante 2",     pos:"ATA"},
+];
+
+// Jogos (data, adversário, local, status: W/D/L/—)
+const PARTIDAS = [
+  {data:"24/10/2025 19:30", adversario:"Panelinha FC",     local:"Arena Jolar",       status:"W"},
+  {data:"31/10/2025 20:00", adversario:"Elite FC",         local:"Arena Jolar",       status:"—"},
+  {data:"17/10/2025 19:00", adversario:"Cohab City",       local:"Arena Jolar",       status:"—"},
+  {data:"10/10/2025 18:30", adversario:"Unidos Leverger",  local:"Arena Jolar",       status:""-""},
+];
+
+/* ====== POPULAR ELENCO ====== */
+const grid = document.getElementById('grid-elenco');
+grid.innerHTML = ELENCO.map(p => `
+  <div class="player">
+    <div class="num">#${p.num}</div>
+    <div><strong>${p.nome}</strong></div>
+    <div class="pos">${p.pos}</div>
+    <div class="badge">SCORPIONS</div>
+  </div>
+`).join('');
+
+/* ====== POPULAR PARTIDAS ====== */
+const tb = document.querySelector('#tb-jogos tbody');
+tb.innerHTML = PARTIDAS.map(j => {
+  const st = (j.status||"—").toUpperCase();
+  const cls = st==="W" ? "win" : st==="D" ? "draw" : st==="L" ? "loss" : "";
+  const label = st==="W"?"Vitória":st==="D"?"Empate":st==="L"?"Derrota":"—";
+  return `<tr>
+    <td>${j.data}</td>
+    <td>${j.adversario}</td>
+    <td>${j.local}</td>
+    <td class="${cls}">${label}</td>
+  </tr>`;
+}).join('');
+
+/* ====== REVEAL SUAVE AO ROLAR ====== */
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('on'); });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ====== WHATSAPP CONTATO ====== */
+function enviarWhats(){
+  const nome = document.getElementById('nome').value.trim();
+  const zap  = document.getElementById('whats').value.trim();
+  const msg  = document.getElementById('msg').value.trim();
+  const texto =
+`*SCORPIONS — Contato do site*
+Nome: ${nome||'-'}
+WhatsApp: ${zap||'-'}
+Mensagem:
+${msg||'-'}`;
+  // número que recebe os contatos (DDI55 + DDD + número)
+  const numero = "5565998159697";
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+  window.open(url, '_blank');
+}
+
+/* ano rodapé */
+document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
